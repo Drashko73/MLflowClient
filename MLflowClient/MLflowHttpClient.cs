@@ -39,5 +39,10 @@ namespace MLflowClient
         {
             return await _apiClient.Post<SearchRunsRequest, SearchRunsResponse>(MLflowApi.RunsSearch, request);
         }
+
+        public async Task<MetricHistoryResponse> GetMetricHistory(MetricHistoryRequest request)
+        {
+            return await _apiClient.Post<MetricHistoryRequest, MetricHistoryResponse>(MLflowApi.MetricsGetHistory, request);
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace MLflowClient.Interfaces
     {
         Task<CreateExperimentResponse> CreateExperiment(CreateExperimentRequest request);
         Task<SearchRunsResponse> SearchRuns(SearchRunsRequest request);
+        Task<MetricHistoryResponse> GetMetricHistory(MetricHistoryRequest request);
     }
 }
