@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace MLflowClient.Http.Dto
+namespace MLflowClient.Http.Dto.Runs.Response
 {
     public class SearchRunsResponse
     {

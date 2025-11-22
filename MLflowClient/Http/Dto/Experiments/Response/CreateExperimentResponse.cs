@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace MLflowClient.Http.Dto
+namespace MLflowClient.Http.Dto.Experiments.Response
 {
     public class CreateExperimentResponse
     {

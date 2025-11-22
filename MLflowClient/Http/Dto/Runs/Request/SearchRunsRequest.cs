@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 
-namespace MLflowClient.Http.Dto
+namespace MLflowClient.Http.Dto.Runs.Request
 {
     public class SearchRunsRequest
     {
