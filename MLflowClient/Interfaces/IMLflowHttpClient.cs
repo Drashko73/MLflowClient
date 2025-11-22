@@ -3,6 +3,8 @@ using MLflowClient.Http.Dto.Artifacts.Request;
 using MLflowClient.Http.Dto.Artifacts.Response;
 using MLflowClient.Http.Dto.Experiments.Request;
 using MLflowClient.Http.Dto.Experiments.Response;
+using MLflowClient.Http.Dto.ModelVersions.Request;
+using MLflowClient.Http.Dto.ModelVersions.Response;
 using MLflowClient.Http.Dto.RegisteredModels.Request;
 using MLflowClient.Http.Dto.RegisteredModels.Response;
 using MLflowClient.Http.Dto.Runs.Request;
@@ -57,5 +59,14 @@ namespace MLflowClient.Interfaces
         Task SetRegisteredModelAlias(SetRegisteredModelAliasRequest request);
 
         // Model Version Management
+        Task<CreateModelVersionResponse> CreateModelVersion(CreateModelVersionRequest request);
+        Task<GetModelVersionResponse> GetModelVersion(GetModelVersionRequest request);
+        Task<UpdateModelVersionResponse> UpdateModelVersion(UpdateModelVersionRequest request);
+        Task DeleteModelVersion(DeleteModelVersionRequest request);
+        Task<SearchModelVersionsResponse> SearchModelVersions(SearchModelVersionsRequest request);
+        Task<GetDownloadUriForModelVersionArtifactsResponse> GetDownloadUriForModelVersionArtifacts(GetDownloadUriForModelVersionArtifactsRequest request);
+        Task<TransitionModelVersionStageResponse> TransitionModelVersionStage(TransitionModelVersionStageRequest request);
+        Task SetModelVersionTag(SetModelVersionTagRequest request);
+        Task DeleteModelVersionTag(DeleteModelVersionTagRequest request);
     }
 }

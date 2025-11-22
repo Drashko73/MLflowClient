@@ -10,9 +10,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Http\Dto\ModelVersions\Response\" />
-    <Folder Include="Http\Dto\ModelVersions\Request\" />
-  </ItemGroup>
-
 </Project>

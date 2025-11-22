@@ -5,6 +5,8 @@ using MLflowClient.Http.Dto.Artifacts.Request;
 using MLflowClient.Http.Dto.Artifacts.Response;
 using MLflowClient.Http.Dto.Experiments.Request;
 using MLflowClient.Http.Dto.Experiments.Response;
+using MLflowClient.Http.Dto.ModelVersions.Request;
+using MLflowClient.Http.Dto.ModelVersions.Response;
 using MLflowClient.Http.Dto.RegisteredModels.Request;
 using MLflowClient.Http.Dto.RegisteredModels.Response;
 using MLflowClient.Http.Dto.Runs.Request;
@@ -82,5 +84,14 @@ namespace MLflowClient
         public async Task SetRegisteredModelAlias(SetRegisteredModelAliasRequest request) => await _apiClient.Post(MLflowApi.RegisteredModelsSetAlias, request);
 
         // Model Versions
+        public async Task<CreateModelVersionResponse> CreateModelVersion(CreateModelVersionRequest request) => await _apiClient.Post<CreateModelVersionRequest, CreateModelVersionResponse>(MLflowApi.ModelVersionsCreate, request);
+        public async Task<GetModelVersionResponse> GetModelVersion(GetModelVersionRequest request) => await _apiClient.GetWithBody<GetModelVersionRequest, GetModelVersionResponse>(MLflowApi.ModelVersionsGet, request);
+        public async Task<UpdateModelVersionResponse> UpdateModelVersion(UpdateModelVersionRequest request) => await _apiClient.Patch<UpdateModelVersionRequest, UpdateModelVersionResponse>(MLflowApi.ModelVersionsUpdate, request);
+        public async Task DeleteModelVersion(DeleteModelVersionRequest request) => await _apiClient.Delete(MLflowApi.ModelVersionsDelete, request);
+        public async Task<SearchModelVersionsResponse> SearchModelVersions(SearchModelVersionsRequest request) => await _apiClient.GetWithBody<SearchModelVersionsRequest, SearchModelVersionsResponse>(MLflowApi.ModelVersionsSearch, request);
+        public async Task<GetDownloadUriForModelVersionArtifactsResponse> GetModelVersionDownloadUri(GetDownloadUriForModelVersionArtifactsRequest request) => await _apiClient.GetWithBody<GetDownloadUriForModelVersionArtifactsRequest, GetDownloadUriForModelVersionArtifactsResponse>(MLflowApi.ModelVersionsGetDownloadUri, request);
+        public async Task<TransitionModelVersionStageResponse> TransitionModelVersionStage(TransitionModelVersionStageRequest request) => await _apiClient.Post<TransitionModelVersionStageRequest, TransitionModelVersionStageResponse>(MLflowApi.ModelVersionsTransitionStage, request);
+        public async Task SetModelVersionTag(SetModelVersionTagRequest request) => await _apiClient.Post(MLflowApi.ModelVersionsSetTag, request);
+        public async Task DeleteModelVersionTag(DeleteModelVersionTagRequest request) => await _apiClient.Delete(MLflowApi.ModelVersionsDeleteTag, request);
     }
 }
