@@ -37,7 +37,7 @@ namespace MLflowClient.Api
         public const string RegisteredModelsSearch = "api/2.0/mlflow/registered-models/search";
         public const string RegisteredModelsSetTag = "api/2.0/mlflow/registered-models/set-tag";
         public const string RegisteredModelsDeleteTag = "api/2.0/mlflow/registered-models/delete-tag";
-        public const string RegisteredModelsDeleteAlias = "api/2.0/mlflow/registered-models/delete-alias";
+        public const string RegisteredModelsDeleteAlias = "api/2.0/mlflow/registered-models/alias";
         public const string RegisteredModelsGetModelVersionByAlias = "api/2.0/mlflow/registered-models/alias";
         public const string RegisteredModelsSetAlias = "api/2.0/mlflow/registered-models/alias";
 

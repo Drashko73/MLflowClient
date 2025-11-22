@@ -3,6 +3,8 @@ using MLflowClient.Http.Dto.Artifacts.Request;
 using MLflowClient.Http.Dto.Artifacts.Response;
 using MLflowClient.Http.Dto.Experiments.Request;
 using MLflowClient.Http.Dto.Experiments.Response;
+using MLflowClient.Http.Dto.RegisteredModels.Request;
+using MLflowClient.Http.Dto.RegisteredModels.Response;
 using MLflowClient.Http.Dto.Runs.Request;
 using MLflowClient.Http.Dto.Runs.Response;
 using System.Threading.Tasks;
@@ -16,22 +18,22 @@ namespace MLflowClient.Interfaces
         Task<SearchExperimentsResponse> SearchExperiments(SearchExperimentsRequest request);
         Task<GetExperimentResponse> GetExperiment(GetExperimentRequest request);
         Task<GetExperimentResponse> GetExperimentByName(GetExperimentByNameRequest request);
-        void DeleteExperiment(DeleteExperimentRequest request);
-        void RestoreExperiment(RestoreExperimentRequest request);
-        void UpdateExperiment(UpdateExperimentRequest request);
-        void SetExperimentTag(SetExperimentTagRequest request);
+        Task DeleteExperiment(DeleteExperimentRequest request);
+        Task RestoreExperiment(RestoreExperimentRequest request);
+        Task UpdateExperiment(UpdateExperimentRequest request);
+        Task SetExperimentTag(SetExperimentTagRequest request);
 
         // Run Management
         Task<CreateRunResponse> CreateRun(CreateRunRequest request);
-        void DeleteRun(DeleteRunRequest request);
-        void RestoreRun(RestoreRunRequest request);
+        Task DeleteRun(DeleteRunRequest request);
+        Task RestoreRun(RestoreRunRequest request);
         Task<GetRunResponse> GetRun(GetRunRequest request);
         Task<SearchRunsResponse> SearchRuns(SearchRunsRequest request);
-        void LogRunMetric(LogRunMetricRequest request);
-        void LogRunBatch(LogRunBatchRequest request);
-        void SetRunTag(SetRunTagRequest request);
-        void DeleteRunTag(DeleteRunTagRequest request);
-        void LogRunParam(LogRunParamRequest request);
+        Task LogRunMetric(LogRunMetricRequest request);
+        Task LogRunBatch(LogRunBatchRequest request);
+        Task SetRunTag(SetRunTagRequest request);
+        Task DeleteRunTag(DeleteRunTagRequest request);
+        Task LogRunParam(LogRunParamRequest request);
         Task<UpdateRunResponse> UpdateRun(UpdateRunRequest request);
 
         // Metric Management
@@ -41,6 +43,18 @@ namespace MLflowClient.Interfaces
         Task<ListArtifactsResponse> ListArtifacts(ListArtifactsRequest request);
 
         // Registered Model Management
+        Task<CreateRegisteredModelResponse> CreateRegisteredModel(CreateRegisteredModelRequest request);
+        Task<GetRegisteredModelResponse> GetRegisteredModel(GetRegisteredModelRequest request);
+        Task<RenameRegisteredModelResponse> RenameRegisteredModel(RenameRegisteredModelRequest request);
+        Task<UpdateRegisteredModelResponse> UpdateRegisteredModel(UpdateRegisteredModelRequest request);
+        Task DeleteRegisteredModel(DeleteRegisteredModelRequest request);
+        Task<GetLatestRegisteredModelVersionsResponse> GetLatestRegisteredModelVersions(GetLatestRegisteredModelVersionsRequest request);
+        Task<SearchRegisteredModelsResponse> SearchRegisteredModels(SearchRegisteredModelsRequest request);
+        Task SetRegisteredModelTag(SetRegisteredModelTagRequest request);
+        Task DeleteRegisteredModelTag(DeleteRegisteredModelTagRequest request);
+        Task DeleteRegisteredModelAlias(DeleteRegisteredModelAliasRequest request);
+        Task<GetRegisteredModelVersionByAliasResponse> GetRegisteredModelVersionByAlias(GetRegisteredModelVersionByAliasRequest request);
+        Task SetRegisteredModelAlias(SetRegisteredModelAliasRequest request);
 
         // Model Version Management
     }
