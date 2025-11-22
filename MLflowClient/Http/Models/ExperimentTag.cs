@@ -9,11 +9,5 @@ namespace MLflowClient.Http.Models
 
         [JsonProperty("value")]
         public string Value { get; set; }
-
-        public ExperimentTag(string key, string value)
-        {
-            Key = key;
-            Value = value;
-        }
     }
 }

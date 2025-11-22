@@ -42,7 +42,7 @@ namespace MLflowClient
 
         public async Task<MetricHistoryResponse> GetMetricHistory(MetricHistoryRequest request)
         {
-            return await _apiClient.Post<MetricHistoryRequest, MetricHistoryResponse>(MLflowApi.MetricsGetHistory, request);
+            return await _apiClient.GetWithBody<MetricHistoryRequest, MetricHistoryResponse>(MLflowApi.MetricsGetHistory, request);
         }
     }
 }

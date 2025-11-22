@@ -17,10 +17,11 @@ namespace MLflowClient.Http
 
         public async Task<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data)
         {
+            var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
             var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync(endpoint, content);
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -34,7 +35,8 @@ namespace MLflowClient.Http
 
         public async Task<TResponse> Get<TResponse>(string endpoint)
         {
-            var response = await _httpClient.GetAsync(endpoint);
+            var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -42,6 +44,23 @@ namespace MLflowClient.Http
                 throw new MLflowException(response.StatusCode, errorContent);
             }
 
+            var responseContent = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<TResponse>(responseContent);
+        }
+
+        public async Task<TResponse> GetWithBody<TRequest, TResponse>(string endpoint, TRequest data)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.SendAsync(request);
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new MLflowException(response.StatusCode, errorContent);
+            }
             var responseContent = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TResponse>(responseContent);
         }

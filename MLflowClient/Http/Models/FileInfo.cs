@@ -12,11 +12,5 @@ namespace MLflowClient.Http.Models
 
         [JsonProperty("file_size")]
         public long? FileSize { get; set; }
-
-        public FileInfo(string path, bool isDir)
-        {
-            Path = path;
-            IsDir = isDir;
-        }
     }
 }
