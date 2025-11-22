@@ -33,6 +33,7 @@ namespace MLflowClient.Interfaces
         Task<SearchRunsResponse> SearchRuns(SearchRunsRequest request);
         Task LogRunMetric(LogRunMetricRequest request);
         Task LogRunBatch(LogRunBatchRequest request);
+        Task LogRunModel(LogRunModelRequest request);
         Task SetRunTag(SetRunTagRequest request);
         Task DeleteRunTag(DeleteRunTagRequest request);
         Task LogRunParam(LogRunParamRequest request);

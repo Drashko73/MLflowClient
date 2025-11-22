@@ -58,6 +58,7 @@ namespace MLflowClient
         public async Task<GetRunResponse> GetRun(GetRunRequest request) => await _apiClient.GetWithBody<GetRunRequest, GetRunResponse>(MLflowApi.RunsGet, request);
         public async Task LogRunMetric(LogRunMetricRequest request) => await _apiClient.Post(MLflowApi.RunsLogMetric, request);
         public async Task LogRunBatch(LogRunBatchRequest request) => await _apiClient.Post(MLflowApi.RunsLogBatch, request);
+        public async Task LogRunModel(LogRunModelRequest request) => await _apiClient.Post(MLflowApi.RunsLogModel, request);
         public async Task SetRunTag(SetRunTagRequest request) => await _apiClient.Post(MLflowApi.RunsSetTag, request);
         public async Task DeleteRunTag(DeleteRunTagRequest request) => await _apiClient.Post(MLflowApi.RunsDeleteTag, request);
         public async Task LogRunParam(LogRunParamRequest request) => await _apiClient.Post(MLflowApi.RunsLogParam, request);
