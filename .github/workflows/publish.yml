@@ -26,5 +26,5 @@ jobs:
       run: dotnet pack --no-build --configuration Release --output ./nupkg
 
     - name: Push to NuGet.org
-      if: github.event_name == 'release' && github.event.action == 'created'
+      if: github.event.action == 'published'
       run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json"
