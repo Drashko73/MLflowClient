@@ -13,6 +13,7 @@ using MLflowClient.Http.Dto.Runs.Request;
 using MLflowClient.Http.Dto.Runs.Response;
 using MLflowClient.Interfaces;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -69,6 +70,11 @@ namespace MLflowClient
 
         // Artifacts
         public async Task<ListArtifactsResponse> ListArtifacts(ListArtifactsRequest request) => await _apiClient.GetWithBody<ListArtifactsRequest, ListArtifactsResponse>(MLflowApi.ArtifactsList, request);
+        public async Task<Stream> DownloadArtifactAsStream(string runUuid, string path)
+        {
+            var endpoint = MLflowApi.ArtifactsDownload.Replace("{path}", Uri.EscapeDataString(path)).Replace("{runUuid}", Uri.EscapeDataString(runUuid));
+            return await _apiClient.DownloadArtifact(endpoint);
+        }
 
         // Registered Models
         public async Task<CreateRegisteredModelResponse> CreateRegisteredModel(CreateRegisteredModelRequest request) => await _apiClient.Post<CreateRegisteredModelRequest, CreateRegisteredModelResponse>(MLflowApi.RegisteredModelsCreate, request);

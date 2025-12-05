@@ -9,6 +9,7 @@ using MLflowClient.Http.Dto.RegisteredModels.Request;
 using MLflowClient.Http.Dto.RegisteredModels.Response;
 using MLflowClient.Http.Dto.Runs.Request;
 using MLflowClient.Http.Dto.Runs.Response;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace MLflowClient.Interfaces
@@ -44,6 +45,7 @@ namespace MLflowClient.Interfaces
 
         // Artifact Management
         Task<ListArtifactsResponse> ListArtifacts(ListArtifactsRequest request);
+        Task<Stream> DownloadArtifactAsStream(string runUuid, string path);
 
         // Registered Model Management
         Task<CreateRegisteredModelResponse> CreateRegisteredModel(CreateRegisteredModelRequest request);

@@ -27,6 +27,7 @@ namespace MLflowClient.Api
         public const string MetricsGetHistory = "api/2.0/mlflow/metrics/get-history";
 
         public const string ArtifactsList = "api/2.0/mlflow/artifacts/list";
+        public const string ArtifactsDownload = "get-artifact?path={path}&run_uuid={runUuid}";
 
         public const string RegisteredModelsCreate = "api/2.0/mlflow/registered-models/create";
         public const string RegisteredModelsGet = "api/2.0/mlflow/registered-models/get";

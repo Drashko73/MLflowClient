@@ -1,5 +1,6 @@
 using MLflowClient.Exceptions;
 using Newtonsoft.Json;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,6 +110,21 @@ namespace MLflowClient.Http
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new MLflowException(response.StatusCode, errorContent);
             }
+        }
+
+        public async Task<Stream> DownloadArtifact(string endpoint)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+
+            var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+
+            if(!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new MLflowException(response.StatusCode, errorContent);
+            }
+
+            return await response.Content.ReadAsStreamAsync();
         }
     }
 }
