@@ -18,11 +18,11 @@ namespace MLflowClient.Http
 
         public async Task<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            using var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
             var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -36,10 +36,12 @@ namespace MLflowClient.Http
 
         public async Task Post<TRequest>(string endpoint, TRequest data)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            using var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
             var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.SendAsync(request);
+            
+            using var response = await _httpClient.SendAsync(request);
+            
             if (!response.IsSuccessStatusCode)
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
@@ -49,8 +51,8 @@ namespace MLflowClient.Http
 
         public async Task<TResponse> Get<TResponse>(string endpoint)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
-            var response = await _httpClient.SendAsync(request);
+            using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            using var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -64,11 +66,11 @@ namespace MLflowClient.Http
 
         public async Task<TResponse> GetWithBody<TRequest, TResponse>(string endpoint, TRequest data)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
             var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
             
             if (!response.IsSuccessStatusCode)
             {
@@ -81,11 +83,11 @@ namespace MLflowClient.Http
 
         public async Task<TResponse> Patch<TRequest, TResponse>(string endpoint, TRequest data)
         {
-            var request = new HttpRequestMessage(HttpMethod.Patch, endpoint);
+            using var request = new HttpRequestMessage(HttpMethod.Patch, endpoint);
             var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -99,11 +101,11 @@ namespace MLflowClient.Http
 
         public async Task Delete<TRequest>(string endpoint, TRequest data)
         {
-            var request = new HttpRequestMessage(HttpMethod.Delete, endpoint);
+            using var request = new HttpRequestMessage(HttpMethod.Delete, endpoint);
             var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
 
             if(!response.IsSuccessStatusCode)
             {
@@ -114,9 +116,9 @@ namespace MLflowClient.Http
 
         public async Task<Stream> DownloadArtifact(string endpoint)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
 
-            var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
             if(!response.IsSuccessStatusCode)
             {
