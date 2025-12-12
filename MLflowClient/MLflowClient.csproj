@@ -5,7 +5,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <PackageId>MLflowClient</PackageId>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	  <Authors>Radovan Draskovic</Authors>
 	  <Company>Faculty of Science, Institute of Mathematics and Informatics, Kragujevac</Company>
 	  <PackageDescription>A .NET client library for the MLflow Tracking Server REST API.</PackageDescription>
