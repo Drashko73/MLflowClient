@@ -118,14 +118,16 @@ namespace MLflowClient.Http
         {
             using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
 
-            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
             if(!response.IsSuccessStatusCode)
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
+                response.Dispose(); // Dispose the response after reading the content
                 throw new MLflowException(response.StatusCode, errorContent);
             }
 
+            // On success, return the response as a stream. The caller is responsible for disposing the stream!
             return await response.Content.ReadAsStreamAsync();
         }
     }
